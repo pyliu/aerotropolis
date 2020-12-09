@@ -19,6 +19,11 @@
   <link rel="preload" href="assets/css/bootstrap-vue.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
   <link rel="preload" href="assets/css/starter-template.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <link rel="preload" href="assets/css/transition.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <style type="text/css">
+  a:hover {
+      text-decoration: none;
+  }
+  </style>
 </head>
 
 <body>
@@ -49,6 +54,7 @@
     <hr class="my-5" />
     <div id="id_data_upload"></div>
     <hr class="my-5" />
+    <div id="footer"></div>
   </main>
   <!-- /.container -->
 
@@ -161,7 +167,7 @@
               alert("請先選擇一個文字檔");
             }
           },
-        },
+        }
       });
 
       const id = new Vue({
@@ -253,6 +259,29 @@
               alert("請先選擇一個XLSX檔");
             }
           },
+        }
+      });
+
+      const vueFooter = new Vue({
+        el: '#footer',
+        template: `<transition>
+          <p v-if="show" class="text-muted fixed-bottom my-2 mx-3 bg-white border rounded text-center p-2 small shadow">
+            <span>
+                <a href="https://github.com/pyliu/aerotropolis" target="_blank" title="View project on Github!">
+                    <i class="fab fa-github fa-lg text-dark"></i>
+                </a>
+                <strong><i class="far fa-copyright"></i> <a href="mailto:pangyu.liu@gmail.com">LIU, PANG-YU</a> ALL RIGHTS RESERVED.</strong>
+                <a href="https://vuejs.org/" target="_blank" title="Learn Vue JS!">
+                    <i class="text-success fab fa-vuejs fa-lg"></i>
+                </a>
+            </span>
+          </p>
+        </transition>`,
+        data: () => ({
+          show: true
+        }),
+        mounted() {
+          setTimeout(() => this.show = false, 10000);
         }
       });
     });
